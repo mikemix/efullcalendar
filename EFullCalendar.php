@@ -23,6 +23,11 @@ class EFullCalendar extends CWidget
     public $htmlOptions=array();
 
     /**
+     * @var bool
+     */
+    public $loadPrintCss=false;
+
+    /**
      * @var string Language code as ./locale/<code>.php file
      */
     public $lang;
@@ -49,13 +54,16 @@ class EFullCalendar extends CWidget
         $assetsDir=(defined(__DIR__) ? __DIR__ : dirname(__FILE__)).'/assets';
         $assets=Yii::app()->assetManager->publish($assetsDir);
 
-        $ext=defined('YII_DEBUG') ? 'min.js' : 'js';
+        $ext=defined('YII_DEBUG') ? 'js' : 'min.js';
         $cs=Yii::app()->clientScript;
         $cs->registerCoreScript('jquery');
-        $cs->registerCoreScript('jquery-ui');
         $cs->registerScriptFile($assets.'/fullcalendar/fullcalendar.'.$ext);
+        $cs->registerScriptFile($assets.'/fullcalendar/jquery-ui-1.8.23.custom.min.js');
         $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.css');
-        $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.print.css');
+
+        if ($this->loadPrintCss) {
+            $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.print.css');
+        }
         if ($this->googleCalendarUrl) {
             $cs->registerScriptFile($assets.'/fullcalendar/gcal.js');
             $this->options['events']=$this->googleCalendarUrl;
@@ -65,7 +73,7 @@ class EFullCalendar extends CWidget
             $cs->registerCssFile($assets.'/themes/'.$this->themeCssFile);
         }
 
-        $js='$("#'.$this->id.'").fullCalendar('.CJavaScript::jsonEncode($this->options).');';
+        $js='$("#'.$this->id.'").fullCalendar('.CJavaScript::encode($this->options).');';
         $cs->registerScript(__CLASS__.'#'.$this->id, $js, CClientScript::POS_READY);
     }
 
