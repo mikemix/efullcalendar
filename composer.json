@@ -1,5 +1,5 @@
 {
-	"name": "mikEmix/EFullCalendar",
+	"name": "mikemix/efullcalendar",
 	"type": "library",
 	"description": "Arshaw's FullCalendar as Yii extension",
 	"keywords": ["yii","calendar"],
