@@ -1,0 +1,15 @@
+{
+	"name": "mikEmix/EFullCalendar",
+	"type": "library",
+	"description": "Arshaw's FullCalendar as Yii extension",
+	"keywords": ["yii","calendar"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mike Zukowsky",
+			"email": "michal@durooil.com",
+			"homepage": "http://www.phpcontext.com",
+			"role": "Developer"
+		}
+	]
+}
