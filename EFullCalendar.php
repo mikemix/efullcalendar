@@ -31,34 +31,70 @@ class EFullCalendar extends CWidget
      * @var string Language code as ./locale/<code>.php file
      */
     public $lang;
+    
+    /**
+     * @var string PHP file extension. Default is php.
+     */
+    public $ext='php';
 
+    /**
+     * Runs the widget.
+     */
     public function run()
     {
         if ($this->lang) {
-            $this->registerLocale();
+            $this->registerLocale($this->getLanguageFilePath());
         }
 
         $this->registerFiles();
-        $this->showOutput();
+
+        echo $this->showOutput();
     }
 
-    protected function registerLocale()
+    /**
+     * Registers language file.
+     *
+     * @param $langFile string Path to the language file.
+     */
+    protected function registerLocale($langFile)
     {
-        $langFile=dirname(__FILE__).'/locale/'.$this->lang.'.php';
-        if (file_exists($langFile))
+        if (file_exists($langFile)) {
             $this->options=CMap::mergeArray($this->options, include($langFile));
+        } else {
+            Yii::log(sprintf('EFullCalendar language file %s is missing', $langFile), CLogger::LEVEL_WARNING);
+        }
     }
 
+    /**
+     * Gets default language file.
+     */
+    protected function getLanguageFilePath()
+    {
+        $langFile=dirname(__FILE__).'/locale/'.$this->lang.'.'.$this->ext;
+
+        if (file_exists($langFile)) {
+            $this->options=CMap::mergeArray($this->options, include($langFile));
+        } else {
+            Yii::log(sprintf('EFullCalendar language file %s is missing', $langFile), CLogger::LEVEL_WARNING);
+        }
+    }
+
+    /**
+     * Registers assets.
+     */
     protected function registerFiles()
     {
         $assetsDir=(defined(__DIR__) ? __DIR__ : dirname(__FILE__)).'/assets';
         $assets=Yii::app()->assetManager->publish($assetsDir);
 
         $ext=defined('YII_DEBUG') ? 'js' : 'min.js';
+
         $cs=Yii::app()->clientScript;
         $cs->registerCoreScript('jquery');
+
         $cs->registerScriptFile($assets.'/fullcalendar/fullcalendar.'.$ext);
         $cs->registerScriptFile($assets.'/fullcalendar/jquery-ui-1.8.23.custom.min.js');
+
         $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.css');
 
         if ($this->loadPrintCss) {
@@ -77,11 +113,16 @@ class EFullCalendar extends CWidget
         $cs->registerScript(__CLASS__.'#'.$this->id, $js, CClientScript::POS_READY);
     }
 
+    /**
+     * Returns the html output.
+     *
+     * @return string Html output
+     */
     protected function showOutput()
     {
         if (! isset($this->htmlOptions['id']))
             $this->htmlOptions['id']=$this->id;
 
-        echo CHtml::tag('div', $this->htmlOptions,'');
+        return CHtml::tag('div', $this->htmlOptions,'');
     }
 }
