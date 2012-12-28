@@ -70,13 +70,7 @@ class EFullCalendar extends CWidget
      */
     protected function getLanguageFilePath()
     {
-        $langFile=dirname(__FILE__).'/locale/'.$this->lang.'.'.$this->ext;
-
-        if (file_exists($langFile)) {
-            $this->options=CMap::mergeArray($this->options, include($langFile));
-        } else {
-            Yii::log(sprintf('EFullCalendar language file %s is missing', $langFile), CLogger::LEVEL_WARNING);
-        }
+        return dirname(__FILE__).'/locale/'.$this->lang.'.'.$this->ext;
     }
 
     /**
