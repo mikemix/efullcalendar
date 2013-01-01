@@ -13,4 +13,4 @@ Example usage:
 				'center'=>'title',
 				'right'=>'today'
 			)
-		)); ?>
+		))); ?>
