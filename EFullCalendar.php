@@ -81,11 +81,10 @@ class EFullCalendar extends CWidget
         $assetsDir=(defined(__DIR__) ? __DIR__ : dirname(__FILE__)).'/assets';
         $assets=Yii::app()->assetManager->publish($assetsDir);
 
-        $ext=defined('YII_DEBUG') ? 'js' : 'min.js';
-
         $cs=Yii::app()->clientScript;
         $cs->registerCoreScript('jquery');
 
+        $ext=defined('YII_DEBUG') && YII_DEBUG ? 'js' : 'min.js';
         $cs->registerScriptFile($assets.'/fullcalendar/fullcalendar.'.$ext);
         $cs->registerScriptFile($assets.'/fullcalendar/jquery-ui-1.8.23.custom.min.js');
 
