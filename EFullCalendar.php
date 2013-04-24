@@ -38,7 +38,7 @@ class EFullCalendar extends CWidget
     public $ext='php';
 
     /**
-     * Runs the widget.
+     * Run the widget.
      */
     public function run()
     {
@@ -52,7 +52,7 @@ class EFullCalendar extends CWidget
     }
 
     /**
-     * Registers language file.
+     * Register language file.
      *
      * @param $langFile string Path to the language file.
      */
@@ -66,7 +66,7 @@ class EFullCalendar extends CWidget
     }
 
     /**
-     * Gets default language file.
+     * Get default language file.
      */
     protected function getLanguageFilePath()
     {
@@ -74,11 +74,11 @@ class EFullCalendar extends CWidget
     }
 
     /**
-     * Registers assets.
+     * Register assets.
      */
     protected function registerFiles()
     {
-        $assetsDir=(defined(__DIR__) ? __DIR__ : dirname(__FILE__)).'/assets';
+        $assetsDir=dirname(__FILE__).'/assets';
         $assets=Yii::app()->assetManager->publish($assetsDir);
 
         $cs=Yii::app()->clientScript;
