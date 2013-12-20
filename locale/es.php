@@ -10,7 +10,7 @@ return array(
     ),
     'firstDay'=>1,
     'dayNames'=>array(
-        'Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'
+        'Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado',
     ),
     'dayNamesShort'=>array(
         'Lu','Ma','Mi','Ju','Vi','Sa','Do'
