@@ -13,7 +13,7 @@ return array(
         'Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado',
     ),
     'dayNamesShort'=>array(
-        'Lu','Ma','Mi','Ju','Vi','Sa','Do'
+       'Do', 'Lu','Ma','Mi','Ju','Vi','Sa'
     ),
     'buttonText'=>array(
         'today'=>'Hoy',
