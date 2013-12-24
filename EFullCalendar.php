@@ -23,11 +23,6 @@ class EFullCalendar extends CWidget
     public $htmlOptions=array();
 
     /**
-     * @var bool
-     */
-    public $loadPrintCss=false;
-
-    /**
      * @var string Language code as ./locale/<code>.php file
      */
     public $lang;
@@ -88,10 +83,8 @@ class EFullCalendar extends CWidget
         $ext=defined('YII_DEBUG') && YII_DEBUG ? 'js' : 'min.js';
         $cs->registerScriptFile($assets.'/fullcalendar/fullcalendar.'.$ext);
         $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.css');
+        $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.print.css','print');
 
-        if ($this->loadPrintCss) {
-            $cs->registerCssFile($assets.'/fullcalendar/fullcalendar.print.css');
-        }
         if ($this->googleCalendarUrl) {
             $cs->registerScriptFile($assets.'/fullcalendar/gcal.js');
             $this->options['events']=$this->googleCalendarUrl;
