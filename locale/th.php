@@ -28,7 +28,7 @@ return array(
         'พ.ย.',
         'ธ.ค.'
     ),
-    'firstDay'=>1,
+    'firstDay'=>0,
     'dayNames'=>array(
         'อาทิตย์',
         'จันทร์',
