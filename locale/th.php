@@ -15,7 +15,7 @@ return array(
         'ธันวาคม'
     ),
     'monthNamesShort'=>array(
-        'มค.',
+        'ม.ค.',
         'ก.พ.',
         'มี.ค.',
         'เม.ย.',
